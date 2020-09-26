@@ -19,7 +19,8 @@ def db_fetch_one(sql, params=None):
     with connection.cursor() as cursor:
         cursor.execute(sql, params)
         desc = cursor.description
-        row = dict(zip([col[0] for col in desc], cursor.fetchone()))
+        data = cursor.fetchone()
+        row = dict(zip([col[0] for col in desc], data)) if data else None
     return row
 
 

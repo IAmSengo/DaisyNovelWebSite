@@ -1,8 +1,9 @@
-from django.contrib import admin
 from django.urls import path
-from apps.app_views import views
+from apps.app_handler.operation import invitation
+from apps.app_handler import views
 
 urlpatterns = [
-    path('pc/index', views.index, name='index'),
-    path('admin/', admin.site.urls),
+    path('', views.index),  # 测试用
+    path('op/gen_invitation_code', invitation.gen_invitation_code),  # 生成邀请码
+    path('op/redeem_invitation_code', invitation.redeem_invitation_code)  # 使用邀请码
 ]
