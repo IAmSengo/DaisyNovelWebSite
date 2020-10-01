@@ -14,6 +14,7 @@ def convert_time_to_date(string_digit_time):
 
 
 def days_till_now(string_digit_time):
+    """给一个13位字符串过去的时间，返回这个时间距离当前多少天"""
     seconds = (int(get_cur_time()) - int(string_digit_time)) // 1000
     return seconds // (3600 * 24)
 
@@ -25,6 +26,14 @@ def merge_dics(*args):
         d1.update(d)
     return d1
 
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 if __name__ == '__main__':
     t = get_cur_time()
