@@ -10,6 +10,12 @@ API Doc
 * URL `op/redeem_invitation_code` 
 * Method: POST 
 * Body:  
-    `{"invitation_code“: "ow7UD53bUYhqTUsDaisy"}`
+    * invitation_code
+    * user_name (length < 8)
+    * invitation_code 
+    * password
+    * email
+ 
+    
     
  

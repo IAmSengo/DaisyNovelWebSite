@@ -14,7 +14,8 @@ from apps.app_base.app_log import LOG
 from ratelimit.decorators import ratelimit
 from apps.settings import DEBUG
 
-INVITATION_CODE_EXPIRE_DAY = 3  # 邀请码过期天数
+INVITATION_CODE_EXPIRE_DAY = 7  # 邀请码过期天数
+USER_NAME_LENGTH_LIMITATION = 8  # 用户名长度限制
 
 
 def gen_invitation_code(request):
@@ -39,8 +40,10 @@ def redeem_invitation_code(request):
         password = request.POST["password"]
         email = request.POST["email"]
         invitation_code = request.POST["invitation_code"]
+        if len(user_name) > USER_NAME_LENGTH_LIMITATION:
+            return json_response({"msg": "用户名长度大于8个字符，一个汉字也是一个字符。"})
         # 判断用户名是否使注册过，如果没有，已经邀请码是有效的，就生成这个账户
-        if is_user_name_exist(user_name):
+        elif is_user_name_exist(user_name):
             return json_response({"msg": "该用户名已存在！"})
 
         # Check whether the invitation_code is valid
@@ -78,7 +81,7 @@ def _is_invitation_code_valid(code):
     elif days_till_now(row["create_date"]) > INVITATION_CODE_EXPIRE_DAY:
         return False, "兑换邀请码失败，该邀请码已过期。"
     else:
-        return True, ""
+        return True, "有效的邀请码。"
 
 
 
