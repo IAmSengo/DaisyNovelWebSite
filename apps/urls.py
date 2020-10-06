@@ -9,4 +9,6 @@ urlpatterns = [
     path('op/redeem_invitation_code', invitation.redeem_invitation_code),  # 使用邀请码注册
     path('op/login', login.user_login),  # 使用邀请码注册
 
+
+
 ]

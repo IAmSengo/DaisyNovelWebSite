@@ -21,7 +21,8 @@ USER_NAME_LENGTH_LIMITATION = 8  # 用户名长度限制
 
 def gen_invitation_code(request):
     """Generate random invitation code"""
-    u_id = "123"  # TODO 从cookie里面拿uid， 扣除对应用户积分等
+    u_id = "123"  # TODO
+    # u_id = request.session.get('user_info')['u_id']
     try:
         code = _gen_random_string()
         while is_invitation_code_exist(code):  # 换成存数据库

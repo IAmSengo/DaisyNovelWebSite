@@ -30,3 +30,5 @@ Reference: [AO3](https://archiveofourown.org/faq/tutorial-posting-a-work-on-ao3?
 ### 请输入书名
 
 ### 请输入文章简介
+
+### 请选择不超过3个标签

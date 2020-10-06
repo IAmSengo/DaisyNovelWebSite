@@ -24,7 +24,7 @@ def user_login(request):
         if not user_info:
             return json_response({"msg": "登录失败，邮箱或密码错误！"})
         # Create Session
-        request.session[user_info['u_id']] = user_info
+        request.session['user_info'] = user_info
         request.session.set_expiry(LOGIN_SESSION_EXPIRE_DAY*24*3600)
         return json_response({"msg": "登录成功！", "user_info": user_info})
     except Exception:
